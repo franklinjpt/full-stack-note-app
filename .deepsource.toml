@@ -11,3 +11,9 @@ name = "shell"
 
 [[analyzers]]
 name = "javascript"
+
+  [analyzers.meta]
+  plugins = ["react"]
+
+[[transformers]]
+name = "google-java-format"
