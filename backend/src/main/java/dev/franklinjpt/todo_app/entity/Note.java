@@ -22,8 +22,7 @@ public class Note {
 
   private Boolean archived;
 
-  public Note() {
-  }
+  public Note() {}
 
   public Note(Long id, String title, String content, Boolean active, Boolean archived) {
     this.id = id;

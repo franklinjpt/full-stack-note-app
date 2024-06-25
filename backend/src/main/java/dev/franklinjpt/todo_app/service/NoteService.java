@@ -1,17 +1,14 @@
 package dev.franklinjpt.todo_app.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import dev.franklinjpt.todo_app.dto.NoteRequestDTO;
 import dev.franklinjpt.todo_app.dto.NoteRequestUpdateDTO;
 import dev.franklinjpt.todo_app.dto.NoteResponseDTO;
 import dev.franklinjpt.todo_app.entity.Note;
 import dev.franklinjpt.todo_app.exception.NotFoundException;
 import dev.franklinjpt.todo_app.repository.INoteRepository;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class NoteService implements INoteService {
@@ -38,8 +35,10 @@ public class NoteService implements INoteService {
 
   @Override
   public NoteResponseDTO findById(Long id) {
-    Note note = noteRepository.findById(id).orElseThrow(
-        () -> new NotFoundException("Note not found with id: " + id));
+    Note note =
+        noteRepository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Note not found with id: " + id));
     return mapToDTO(note);
   }
 
@@ -95,5 +94,4 @@ public class NoteService implements INoteService {
   private Note mapToEntity(NoteRequestUpdateDTO noteRequestUpdateDTO) {
     return objectMapper.convertValue(noteRequestUpdateDTO, Note.class);
   }
-
 }
