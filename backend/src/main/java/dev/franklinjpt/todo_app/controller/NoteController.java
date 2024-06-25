@@ -1,7 +1,11 @@
 package dev.franklinjpt.todo_app.controller;
 
+import dev.franklinjpt.todo_app.dto.NoteRequestDTO;
+import dev.franklinjpt.todo_app.dto.NoteRequestUpdateDTO;
+import dev.franklinjpt.todo_app.dto.NoteResponseDTO;
+import dev.franklinjpt.todo_app.service.INoteService;
+import dev.franklinjpt.todo_app.service.NoteService;
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,12 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import dev.franklinjpt.todo_app.dto.NoteRequestDTO;
-import dev.franklinjpt.todo_app.dto.NoteRequestUpdateDTO;
-import dev.franklinjpt.todo_app.dto.NoteResponseDTO;
-import dev.franklinjpt.todo_app.service.INoteService;
-import dev.franklinjpt.todo_app.service.NoteService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -54,7 +52,8 @@ public class NoteController {
   }
 
   @PutMapping
-  public ResponseEntity<NoteResponseDTO> update(@RequestBody NoteRequestUpdateDTO noteRequestUpdateDTO) {
+  public ResponseEntity<NoteResponseDTO> update(
+      @RequestBody NoteRequestUpdateDTO noteRequestUpdateDTO) {
     return ResponseEntity.status(HttpStatus.OK).body(noteService.update(noteRequestUpdateDTO));
   }
 
@@ -77,5 +76,4 @@ public class NoteController {
   public ResponseEntity<List<NoteResponseDTO>> getActives() {
     return ResponseEntity.status(HttpStatus.OK).body(noteService.getActives());
   }
-
 }
